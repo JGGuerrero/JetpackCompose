@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Compose Test</string>
+    <string name="title_activity_pl_compose">PL_Compose</string>
+</resources>
