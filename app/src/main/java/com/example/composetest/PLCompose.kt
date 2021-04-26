@@ -22,7 +22,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,24 +40,67 @@ import com.example.composetest.ui.theme.ComposeTestTheme
 class PLCompose : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val fontFamily = FontFamily(
+            Font(R.font.robotomono_extralight, FontWeight.ExtraLight),
+            Font(R.font.robotomono_bold, FontWeight.Bold),
+            Font(R.font.robotomono_italic, FontWeight.Normal),
+        )
+
+
         setContent {
-            Section1()
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0xFF101010))) {
+                Text(
+                    text = buildAnnotatedString {
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Green,
+                                fontSize = 50.sp
+                            )
+                        ) {
+                            append("J")
+                        }
+                        append("etpack ")
+
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Green,
+                                fontSize = 50.sp
+                            )
+                        ) {
+                            append("C")
+                        }
+                        append("ompose")
+                    },
+                    color = Color.White,
+                    fontSize = 30.sp,
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    textAlign = TextAlign.Center,
+                    textDecoration = TextDecoration.Underline
+                )
+            }
         }
     }
 }
 
 @Composable
 fun Section1() {
-    val painter = painterResource(id = R.drawable.hunting_horn_mizu)
-    val description = "Mizutsune Hunting Horn"
-    val title = "Mizutsune Hunting Horn"
     Box(modifier = Modifier
-        .fillMaxWidth(0.5f)
-        .padding(16.dp)) {
-        ImageCard(painter = painter, contentDescription = description, title = title)
+        .fillMaxSize()
+        .background(Color(0xFF101010))) {
+        Text(
+            text = "Jetpack Compose",
+            color = Color.White,
+            fontSize = 30.sp
+        )
     }
 
 }
+
+
 
 @Composable
 fun ImageCard(
